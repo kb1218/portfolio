@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kshitij Bangar | AI & DevOps Engineer Portfolio</title>
+  <meta name="description" content="AI & Data Science engineer with hands-on experience building and deploying LLM-based systems: RAG, MCP, and containerised DevOps pipelines. SPPU CGPA 9.40.">
+  <meta name="keywords" content="Kshitij Bangar, AI Engineer, LLM Applications, DevOps, RAG pipelines, MCP, Savitribai Phule Pune University, DevOps Trainee">
+  <meta name="author" content="Kshitij Bangar">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Kshitij Bangar | AI & DevOps Engineer">
+  <meta property="og:description" content="AI & Data Science engineer specializing in LLM applications, RAG pipelines, and automated cloud deployments.">
+  <meta property="og:image" content="./assets/profile.jpg">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Background Particle Network -->
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- Interactive Cursor Glow -->
+  <div class="cursor-glow" id="cursor-glow"></div>
+
+  <!-- Header Section -->
+  <header id="header">
+    <div class="container">
+      <nav>
+        <a href="#" class="logo">
+          <span class="bracket">&lt;</span><span class="name">Kshitij.B</span><span class="bracket">/&gt;</span>
+        </a>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#chatbot">Resume AI</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="burger" id="burger">
+          <div class="line1"></div>
+          <div class="line2"></div>
+          <div class="line3"></div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="hero" class="hero">
+    <div class="container">
+      <div class="hero-wrapper">
+        <div class="hero-text reveal active">
+          <h3>SYSTEM INITIATING...</h3>
+          <h1>Hi, I'm <span style="background: linear-gradient(90deg, var(--accent-cyan), var(--accent-violet)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Kshitij Bangar</span></h1>
+          <h2>I build <span class="typewriter" id="typewriter-text"></span></h2>
+          <p>
+            AI & Data Science Engineer (CGPA 9.40) with hands-on expertise building and deploying production-ready LLM systems (RAG, MCP) and containerised cloud architectures. Fast development using advanced AI workflows (Cursor, Claude Code) without compromising code quality.
+          </p>
+          <div class="hero-ctas">
+            <a href="#chatbot" class="btn btn-primary"><i class="fa-solid fa-robot"></i> Chat With Resume</a>
+            <a href="#projects" class="btn btn-secondary"><i class="fa-solid fa-code"></i> View Projects</a>
+          </div>
+        </div>
+        
+        <div class="hero-image reveal active">
+          <div class="image-frame-wrapper">
+            <div class="image-frame-glow" id="frame-glow"></div>
+            <div class="image-frame-border">
+              <div class="image-content">
+                <img src="./assets/profile.jpg" alt="Kshitij Bangar Photo">
+              </div>
+            </div>
+            <div class="corner-decorators">
+              <div class="corner-decorator tl"></div>
+              <div class="corner-decorator tr"></div>
+              <div class="corner-decorator bl"></div>
+              <div class="corner-decorator br"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Terminal Section -->
+  <section id="terminal-section" class="reveal">
+    <div class="container">
+      <h2 class="section-title">Developer <span>Console</span></h2>
+      <div class="terminal-wrapper glass-panel">
+        <div class="terminal-header">
+          <div class="terminal-controls">
+            <div class="terminal-dot red"></div>
+            <div class="terminal-dot yellow"></div>
+            <div class="terminal-dot green"></div>
+          </div>
+          <div class="terminal-title">kshitij@spu-node-01: ~</div>
+          <div style="width: 52px;"></div> <!-- Spacer to center title -->
+        </div>
+        <div class="terminal-body" id="terminal-body">
+          <div class="terminal-output" id="terminal-output">
+            <div class="terminal-output-line">Kshitij Bangar [Version 1.0.0]</div>
+            <div class="terminal-output-line">System status: ONLINE</div>
+            <div class="terminal-output-line">AI pipelines loaded. DevOps nodes containerised.</div>
+            <div class="terminal-output-line">Type <span style="color: var(--accent-cyan); font-weight: bold;">help</span> or click a command below to start.</div>
+          </div>
+          <div class="terminal-input-line">
+            <span class="terminal-prompt">kshitij_bangar$</span>
+            <input type="text" class="terminal-command-input" id="terminal-input" placeholder="Type a command..." autofocus autocomplete="off" spellcheck="false">
+          </div>
+        </div>
+        <div class="terminal-suggested-btns">
+          <button class="terminal-btn" onclick="executeTerminalCommand('about')">about</button>
+          <button class="terminal-btn" onclick="executeTerminalCommand('skills')">skills</button>
+          <button class="terminal-btn" onclick="executeTerminalCommand('projects')">projects</button>
+          <button class="terminal-btn" onclick="executeTerminalCommand('devops')">devops</button>
+          <button class="terminal-btn" onclick="executeTerminalCommand('clear')">clear</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About & Experience Section -->
+  <section id="about" class="reveal">
+    <div class="container">
+      <h2 class="section-title">Profile & <span>Experience</span></h2>
+      <div class="about-grid">
+        <div class="about-info">
+          <h3>Building production AI & Cloud apps</h3>
+          <p>
+            I am a student-developer concluding my Bachelor's degree in Artificial Intelligence & Data Science at Savitribai Phule Pune University. I maintain a high academic standard (9.40/10 CGPA) while building complex, hands-on software systems.
+          </p>
+          <p>
+            My engineering philosophy centers around speed and efficiency. I utilize prompt-driven AI development workflows (Cursor, Claude Code, GitHub Copilot) to prototype ideas fast, then focus heavily on containerisation, deployment orchestration, and writing modular code to bring projects to a production standard.
+          </p>
+          <div class="edu-card">
+            <h4><i class="fa-solid fa-graduation-cap"></i> Education</h4>
+            <p class="uni">B.E. in Artificial Intelligence & Data Science</p>
+            <p class="date">Savitribai Phule Pune University | Nov 2022 – July 2026</p>
+            <p class="cgpa"><strong>CGPA:</strong> 9.40 / 10 (Final)</p>
+          </div>
+        </div>
+        <div class="about-timeline">
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-dot-marker"></div>
+              <div class="timeline-content">
+                <h3>DevOps Trainee (Internship)</h3>
+                <div class="timeline-company">Cloudblitz, Pune</div>
+                <div class="timeline-date">July 2025 – March 2026</div>
+                <ul>
+                  <li>Set up Docker containers and Docker Compose files for multi-service apps, managing inter-container networks and volume layers.</li>
+                  <li>Configured Jenkins and GitHub Actions pipelines to automate build, test, and deploy tasks across different microservices.</li>
+                  <li>Provisioned AWS services (EC2, S3, IAM) utilizing Terraform and Infrastructure-as-Code (IaC) architectures in sandboxed environments.</li>
+                  <li>Wrote Kubernetes manifests (Deployments, Services) and monitored application health metrics using Prometheus & Grafana.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Matrix Section -->
+  <section id="skills" class="reveal">
+    <div class="container">
+      <h2 class="section-title">Technical <span>Skills</span></h2>
+      <div class="skills-tabs">
+        <button class="skill-tab-btn active" onclick="filterSkills(this, 'all')">All Skills</button>
+        <button class="skill-tab-btn" onclick="filterSkills(this, 'ai')">AI & LLM</button>
+        <button class="skill-tab-btn" onclick="filterSkills(this, 'devops')">DevOps & Cloud</button>
+        <button class="skill-tab-btn" onclick="filterSkills(this, 'prog')">Programming & Tools</button>
+        <button class="skill-tab-btn" onclick="filterSkills(this, 'web')">Web & DB</button>
+      </div>
+      <div class="skills-grid" id="skills-grid">
+        <!-- Skill Cards will be dynamically generated by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="reveal">
+    <div class="container">
+      <h2 class="section-title">Featured <span>Projects</span></h2>
+      <div class="projects-filters">
+        <button class="project-filter-btn active" onclick="filterProjects(this, 'all')">All</button>
+        <button class="project-filter-btn" onclick="filterProjects(this, 'ai')">AI & LLM</button>
+        <button class="project-filter-btn" onclick="filterProjects(this, 'devops')">DevOps</button>
+        <button class="project-filter-btn" onclick="filterProjects(this, 'web')">Web Apps</button>
+      </div>
+      <div class="projects-grid" id="projects-grid">
+        <!-- Project Cards will be dynamically generated by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- RAG AI Chatbot Section -->
+  <section id="chatbot" class="reveal">
+    <div class="container">
+      <h2 class="section-title">Resume <span>AI Chatbot</span></h2>
+      <div class="chat-container">
+        <div class="chat-panel glass-panel">
+          <div class="chat-header">
+            <div class="chat-header-info">
+              <div class="chat-status-dot"></div>
+              <div class="chat-status-text">Resume RAG Bot</div>
+              <div class="chat-status-model">mistral-7b-instruct</div>
+            </div>
+            <div style="font-size: 0.8rem; color: var(--text-muted);">Status: Online</div>
+          </div>
+          
+          <div class="chat-window" id="chat-window">
+            <div class="chat-bubble ai">
+              Hello! I am Kshitij's Resume Assistant. I utilize a simulated Retrieval-Augmented Generation (RAG) system grounded in Kshitij's professional resume. Ask me anything about his skills, experience, projects, or education!
+            </div>
+          </div>
+
+          <div class="chat-suggested-queries">
+            <button class="chat-suggested-btn" onclick="askChatbot('What is Kshitij\'s CGPA?')">What is Kshitij's CGPA?</button>
+            <button class="chat-suggested-btn" onclick="askChatbot('Tell me about the Multilingual Chatbot.')">Tell me about the Multilingual Chatbot.</button>
+            <button class="chat-suggested-btn" onclick="askChatbot('What DevOps tools does he know?')">What DevOps tools does he know?</button>
+          </div>
+
+          <div class="chat-input-bar">
+            <input type="text" class="chat-input" id="chat-input" placeholder="Ask a question about Kshitij's resume..." onkeydown="if(event.key === 'Enter') handleSendChat()">
+            <button class="chat-send-btn" id="chat-send-btn" onclick="handleSendChat()">
+              <i class="fa-solid fa-paper-plane"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="reveal">
+    <div class="container">
+      <h2 class="section-title">Get in <span>Touch</span></h2>
+      <div class="contact-wrapper">
+        <div class="contact-info">
+          <h3>Let's build something next-gen</h3>
+          <p>
+            Whether you want to discuss a software role, an AI pipeline integration, containerising microservices, or just geek out over the Model Context Protocol (MCP) – reach out!
+          </p>
+          <div class="contact-details">
+            <div class="contact-item">
+              <div class="contact-icon-box">
+                <i class="fa-solid fa-envelope"></i>
+              </div>
+              <div class="contact-text">
+                <h5>Email</h5>
+                <a href="mailto:kshitijbangar18@gmail.com">kshitijbangar18@gmail.com</a>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon-box">
+                <i class="fa-solid fa-phone"></i>
+              </div>
+              <div class="contact-text">
+                <h5>Phone</h5>
+                <a href="tel:+919923377946">+91 99233 77946</a>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon-box">
+                <i class="fa-solid fa-location-dot"></i>
+              </div>
+              <div class="contact-text">
+                <h5>Location</h5>
+                <p>Pune, Maharashtra, India</p>
+              </div>
+            </div>
+          </div>
+          <div class="social-links">
+            <a href="https://github.com/kb1218" target="_blank" class="social-btn"><i class="fa-brands fa-github"></i></a>
+            <a href="https://linkedin.com/in/kshitij-bangar-1809kb" target="_blank" class="social-btn"><i class="fa-brands fa-linkedin-in"></i></a>
+          </div>
+        </div>
+        
+        <div class="contact-form-panel glass-panel">
+          <form id="contact-form" onsubmit="handleContactSubmit(event)">
+            <div class="form-group">
+              <label for="form-name">Name</label>
+              <input type="text" id="form-name" class="form-control" placeholder="Your Name" required>
+            </div>
+            <div class="form-group">
+              <label for="form-email">Email</label>
+              <input type="email" id="form-email" class="form-control" placeholder="Your Email Address" required>
+            </div>
+            <div class="form-group">
+              <label for="form-message">Message</label>
+              <textarea id="form-message" class="form-control" placeholder="Your message..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
+              <i class="fa-solid fa-paper-plane"></i> Send Secure Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <a href="#" class="logo">
+          <span class="bracket">&lt;</span><span class="name">Kshitij.B</span><span class="bracket">/&gt;</span>
+        </a>
+        <div class="footer-system-status">
+          <span class="status-online">System: ACTIVE</span>
+          <span class="status-platform">Host: VERCEL</span>
+          <span class="status-latency">Simulated RAG Latency: ~42ms</span>
+        </div>
+        <div class="footer-copyright">
+          &copy; <span id="current-year"></span> Kshitij Bangar. Built with vanilla HTML/CSS/JS.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Custom Scripts -->
+  <script src="script.js"></script>
+</body>
+</html>
