@@ -204,8 +204,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // 10. Mouse Glare Effect on Cards
   initCardGlareEffect();
 
-  // 11. Initial Welcome message for Terminal
-  initTerminalWelcome();
+  // 11. Initialize Pipeline Visualizer
+  showPipelineStep('code', document.querySelector('.pipeline-node'));
 });
 
 // --- TYPEWRITER EFFECT ---
@@ -337,13 +337,13 @@ function initParticleNetwork() {
   // Create array
   function init() {
     particlesArray = [];
-    let numberOfParticles = (canvas.width * canvas.height) / 11000;
-    numberOfParticles = Math.min(numberOfParticles, 120); // Cap particles count
+    let numberOfParticles = (canvas.width * canvas.height) / 45000; // lower density for clean look
+    numberOfParticles = Math.min(numberOfParticles, 30); // Cap particles count
 
     const colors = [
-      "rgba(0, 242, 254, 0.4)",  // Accent cyan
-      "rgba(138, 43, 226, 0.4)", // Accent violet
-      "rgba(16, 185, 129, 0.2)"  // Accent green
+      "rgba(0, 242, 254, 0.15)",  // Subtle accent cyan
+      "rgba(138, 43, 226, 0.15)", // Subtle accent violet
+      "rgba(16, 185, 129, 0.08)"  // Subtle accent green
     ];
 
     for (let i = 0; i < numberOfParticles; i++) {
@@ -369,7 +369,7 @@ function initParticleNetwork() {
 
         if (distance < 110) {
           opacityValue = 1 - (distance / 110);
-          ctx.strokeStyle = `rgba(138, 43, 226, ${opacityValue * 0.12})`;
+          ctx.strokeStyle = `rgba(138, 43, 226, ${opacityValue * 0.05})`;
           ctx.lineWidth = 1;
           ctx.beginPath();
           ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
@@ -490,139 +490,73 @@ function filterProjects(element, category) {
   renderProjects(category);
 }
 
-// --- DEVELOPER TERMINAL CONSOLE ---
-const terminalInput = document.getElementById("terminal-input");
-const terminalOutput = document.getElementById("terminal-output");
-const terminalBody = document.getElementById("terminal-body");
+// --- PIPELINE VISUALIZER ---
+const pipelineData = {
+  code: {
+    title: "Code & Version Control",
+    desc: "Writing modular, clean Python and JavaScript using advanced AI workflows. I ensure proper structure and documentation from day one.",
+    tech: ["Git & GitHub", "Cursor", "Claude Code", "Python (Pandas, SQL)"]
+  },
+  ci: {
+    title: "Continuous Integration",
+    desc: "Automating builds and testing to verify code quality. Configured automated checking flows and comparisons between leading tools.",
+    tech: ["Jenkins", "GitHub Actions", "Docker Build", "Static Code Analysis"]
+  },
+  container: {
+    title: "Containerisation & Packaging",
+    desc: "Dockerising applications into lightweight, secure containers. Managing volume mounts, image layers, and local virtual networks.",
+    tech: ["Docker", "Docker Compose", "Image Layer Optimization", "Multi-stage Builds"]
+  },
+  rag: {
+    title: "AI RAG Retrieval & Prompting",
+    desc: "Integrating locally hosted model endpoints and vector structures to retrieve document facts and generate verified chatbot replies.",
+    tech: ["Retrieval-Augmented Generation", "Ollama (Phi-4, Mistral)", "Model Context Protocol (MCP)", "Prompt Engineering"]
+  },
+  deploy: {
+    title: "Deployment & Orchestration",
+    desc: "Orchestrating releases on cloud servers and serverless hosting. Managing container scaling, ingress routing, and systems metrics logging.",
+    tech: ["AWS (EC2, S3, IAM)", "Kubernetes (Basics)", "Nginx", "Prometheus & Grafana"]
+  }
+};
 
-function initTerminalWelcome() {
-  terminalInput.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") {
-      const command = terminalInput.value.trim();
-      if (command) {
-        processTerminalCommand(command);
-      }
-      terminalInput.value = "";
+function showPipelineStep(step, nodeElement) {
+  // Update active state in nodes
+  const nodes = document.querySelectorAll(".pipeline-node");
+  nodes.forEach(node => node.classList.remove("active"));
+  nodeElement.classList.add("active");
+
+  // Update active connectors
+  const connectors = document.querySelectorAll(".pipeline-connector");
+  const nodesArr = Array.from(nodes);
+  const activeIndex = nodesArr.indexOf(nodeElement);
+
+  connectors.forEach((conn, index) => {
+    if (index < activeIndex) {
+      conn.classList.add("active");
+    } else {
+      conn.classList.remove("active");
     }
   });
 
-  // Keep focus in terminal input when clicking inside the body
-  terminalBody.addEventListener("click", () => {
-    terminalInput.focus();
-  });
-}
-
-function executeTerminalCommand(cmd) {
-  processTerminalCommand(cmd);
-}
-
-function processTerminalCommand(rawCmd) {
-  const cmd = rawCmd.toLowerCase().trim();
+  // Render detail panel content
+  const details = document.getElementById("pipeline-details");
+  const data = pipelineData[step];
   
-  // Create output mirror line
-  const inputLine = document.createElement("div");
-  inputLine.className = "terminal-output-line";
-  inputLine.innerHTML = `<span class="terminal-prompt">kshitij_bangar$</span> <span style="color: var(--text-primary);">${rawCmd}</span>`;
-  terminalOutput.appendChild(inputLine);
-
-  const responseLine = document.createElement("div");
-  responseLine.className = "terminal-output-line";
-  responseLine.style.color = "var(--text-secondary)";
-
-  switch (cmd) {
-    case "help":
-      responseLine.innerHTML = `
-Available commands:
-  <span style="color: var(--accent-cyan); font-weight: bold;">about</span>    - Display summary profile details
-  <span style="color: var(--accent-cyan); font-weight: bold;">skills</span>   - List Kshitij's primary engineering toolset
-  <span style="color: var(--accent-cyan); font-weight: bold;">projects</span> - Detail featured engineering applications
-  <span style="color: var(--accent-cyan); font-weight: bold;">devops</span>   - Outline cloud/CI/CD trainee roles
-  <span style="color: var(--accent-cyan); font-weight: bold;">contact</span>  - View developer contact channels
-  <span style="color: var(--accent-cyan); font-weight: bold;">clear</span>    - Wipe the console screen history
-  <span style="color: var(--accent-cyan); font-weight: bold;">date</span>     - Get current system date
-  <span style="color: var(--accent-cyan); font-weight: bold;">sudo</span>     - ...Admin validation check
-      `;
-      break;
-
-    case "about":
-      responseLine.innerHTML = `
-<span style="color: var(--text-primary); font-weight: bold;">KSHITIJ BANGAR - AI Engineer & DevOps Trainee</span>
------------------------------------------------------
-AI & Data Science Student graduating Savitribai Phule Pune University in 2026.
-Academic average of <span style="color: var(--accent-cyan); font-weight: bold;">9.40 / 10 CGPA</span>.
-Specializes in building LLM application pipelines (RAG, MCP, Ollama) and deployment orchestration.
-Looking for high-impact roles to deploy production systems.
-      `;
-      break;
-
-    case "skills":
-      responseLine.innerHTML = `
-<span style="color: var(--text-primary); font-weight: bold;">CORE TOOLSET</span>
------------------------------------------------------
-* <span style="color: var(--accent-cyan);">AI & LLM:</span> RAG architectures, MCP tools, Ollama hosting, prompt engineering, scikit-learn
-* <span style="color: var(--accent-cyan);">DevOps:</span> Docker & Compose, Jenkins & GitHub Actions pipelines, Kubernetes, Terraform, AWS
-* <span style="color: var(--accent-cyan);">Languages:</span> Python (Pandas/NumPy), SQL database management, Bash scripting
-* <span style="color: var(--accent-cyan);">Frameworks:</span> Supabase engine, Flask REST server, Netlify static deploys
-      `;
-      break;
-
-    case "projects":
-      responseLine.innerHTML = `
-<span style="color: var(--text-primary); font-weight: bold;">FEATURED PROJECTS</span>
------------------------------------------------------
-1. <span style="color: var(--accent-cyan); font-weight: bold;">Multilingual Enterprise Chatbot</span>: Local Ollama hosting + Voice STT/TTS + RAG + MCP server tools
-2. <span style="color: var(--accent-cyan); font-weight: bold;">TalentIQ Platform</span>: Career advisor Flask RAG chatbot + scikit-learn classifier
-3. <span style="color: var(--accent-cyan); font-weight: bold;">TRIPO Social</span>: Traveler matching system with Supabase backend and Netlify hosts
-4. <span style="color: var(--accent-cyan); font-weight: bold;">App Deployment Clones</span>: Netflix/Myntra clones deployed on AWS EC2 behind Nginx proxies
-      `;
-      break;
-
-    case "devops":
-      responseLine.innerHTML = `
-<span style="color: var(--text-primary); font-weight: bold;">DEVOPS ROLE SUMMARY (Cloudblitz Internship)</span>
------------------------------------------------------
-* Configured Docker configurations & Compose volume mounts for microservices
-* Engineered build pipelines comparing Jenkins and GitHub Actions workflows
-* Managed AWS resource pools (EC2, S3 bucket storage) using Terraform IaC
-* Configured cluster monitoring metrics using Prometheus database and Grafana UI
-      `;
-      break;
-
-    case "contact":
-      responseLine.innerHTML = `
-<span style="color: var(--text-primary); font-weight: bold;">CONTACT CHANNELS</span>
------------------------------------------------------
-* <span style="color: var(--accent-cyan);">Email:</span> kshitijbangar18@gmail.com
-* <span style="color: var(--accent-cyan);">Phone:</span> +91-9923377946
-* <span style="color: var(--accent-cyan);">LinkedIn:</span> linkedin.com/in/kshitij-bangar-1809kb
-* <span style="color: var(--accent-cyan);">GitHub:</span> github.com/kb1218
-      `;
-      break;
-
-    case "clear":
-      terminalOutput.innerHTML = "";
-      return;
-
-    case "date":
-      responseLine.innerHTML = `System Date: ${new Date().toString()}`;
-      break;
-
-    case "sudo":
-      responseLine.innerHTML = `<span style="color: var(--accent-orange); font-weight: bold;">[WARNING] Unauthorized admin initialization request. Event has been logged.</span>`;
-      break;
-
-    default:
-      responseLine.innerHTML = `Command not recognized: <span style="color: #ef4444;">${rawCmd}</span>. Type <span style="color: var(--accent-cyan); font-weight: bold;">help</span> for instructions.`;
-      break;
-  }
-
-  terminalOutput.appendChild(responseLine);
-  
-  // Auto Scroll Terminal Body to bottom
-  terminalBody.scrollTop = terminalBody.scrollHeight;
+  details.style.opacity = 0;
+  setTimeout(() => {
+    const tagsHTML = data.tech.map(t => `<span class="project-tag">${t}</span>`).join("");
+    details.innerHTML = `
+      <h3>${data.title}</h3>
+      <p class="pipeline-desc">${data.desc}</p>
+      <div class="pipeline-tech-list">
+        ${tagsHTML}
+      </div>
+    `;
+    details.style.opacity = 1;
+  }, 150);
 }
 
-// --- RAG RESUME AI CHATBOTPLAYGROUND ---
+// --- RAG RESUME AI CHATBOT PLAYGROUND ---
 const chatWindow = document.getElementById("chat-window");
 const chatInput = document.getElementById("chat-input");
 
@@ -642,15 +576,32 @@ function handleSendChat() {
   // Append typing indicator
   const indicator = appendTypingIndicator();
 
-  // Simulate RAG lookup latency
-  setTimeout(() => {
-    // Remove typing indicator
+  // Send request to Vercel Serverless Function
+  fetch('/api/chat', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ prompt: query })
+  })
+  .then(res => {
+    if (!res.ok) {
+      throw new Error('API request failed');
+    }
+    return res.json();
+  })
+  .then(data => {
     indicator.remove();
-
-    // RAG Search Logic
+    appendChatBubble(data.answer, "ai", data.source);
+  })
+  .catch(err => {
+    console.warn("Vercel API failed or running offline, using local RAG fallback:", err);
+    indicator.remove();
+    
+    // Fallback: Run local query logic
     const response = queryRAGResume(query);
-    appendChatBubble(response.answer, "ai", response.source);
-  }, 750);
+    appendChatBubble(response.answer, "ai", `${response.source} (Offline Fallback)`);
+  });
 }
 
 function appendChatBubble(text, sender, source = null) {
@@ -705,7 +656,7 @@ function appendTypingIndicator() {
   return bubble;
 }
 
-// Simulated RAG Engine
+// Local RAG Fallback Engine
 function queryRAGResume(query) {
   const lowercaseQuery = query.toLowerCase();
   

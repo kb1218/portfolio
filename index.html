@@ -33,7 +33,7 @@
     <div class="container">
       <nav>
         <a href="#" class="logo">
-          <span class="bracket">&lt;</span><span class="name">Kshitij.B</span><span class="bracket">/&gt;</span>
+          <span class="name">KSHITIJ BANGAR</span>
         </a>
         <ul class="nav-links" id="nav-links">
           <li><a href="#about">About</a></li>
@@ -76,50 +76,64 @@
                 <img src="./assets/profile.jpg" alt="Kshitij Bangar Photo">
               </div>
             </div>
-            <div class="corner-decorators">
-              <div class="corner-decorator tl"></div>
-              <div class="corner-decorator tr"></div>
-              <div class="corner-decorator bl"></div>
-              <div class="corner-decorator br"></div>
-            </div>
+            <!-- Clean border framing -->
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Terminal Section -->
-  <section id="terminal-section" class="reveal">
+  <!-- Pipeline Section -->
+  <section id="pipeline-section" class="reveal">
     <div class="container">
-      <h2 class="section-title">Developer <span>Console</span></h2>
-      <div class="terminal-wrapper glass-panel">
-        <div class="terminal-header">
-          <div class="terminal-controls">
-            <div class="terminal-dot red"></div>
-            <div class="terminal-dot yellow"></div>
-            <div class="terminal-dot green"></div>
+      <h2 class="section-title">Deployment & AI <span>Pipeline</span></h2>
+      <p style="text-align: center; color: var(--text-secondary); max-width: 600px; margin: -2rem auto 3rem auto;">
+        Interactive simulation of my continuous integration and deployment stack. Click any pipeline node to inspect the tech integrations.
+      </p>
+      
+      <div class="pipeline-container glass-panel">
+        <div class="pipeline-flow">
+          <div class="pipeline-node active" onclick="showPipelineStep('code', this)">
+            <div class="node-icon"><i class="fa-solid fa-code"></i></div>
+            <div class="node-label">Code</div>
           </div>
-          <div class="terminal-title">kshitij@spu-node-01: ~</div>
-          <div style="width: 52px;"></div> <!-- Spacer to center title -->
+          <div class="pipeline-connector active"></div>
+          
+          <div class="pipeline-node" onclick="showPipelineStep('ci', this)">
+            <div class="node-icon"><i class="fa-solid fa-circle-play"></i></div>
+            <div class="node-label">CI Build</div>
+          </div>
+          <div class="pipeline-connector"></div>
+          
+          <div class="pipeline-node" onclick="showPipelineStep('container', this)">
+            <div class="node-icon"><i class="fa-brands fa-docker"></i></div>
+            <div class="node-label">Containerise</div>
+          </div>
+          <div class="pipeline-connector"></div>
+
+          <div class="pipeline-node" onclick="showPipelineStep('rag', this)">
+            <div class="node-icon"><i class="fa-solid fa-brain"></i></div>
+            <div class="node-label">RAG Engine</div>
+          </div>
+          <div class="pipeline-connector"></div>
+          
+          <div class="pipeline-node" onclick="showPipelineStep('deploy', this)">
+            <div class="node-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+            <div class="node-label">Deploy</div>
+          </div>
         </div>
-        <div class="terminal-body" id="terminal-body">
-          <div class="terminal-output" id="terminal-output">
-            <div class="terminal-output-line">Kshitij Bangar [Version 1.0.0]</div>
-            <div class="terminal-output-line">System status: ONLINE</div>
-            <div class="terminal-output-line">AI pipelines loaded. DevOps nodes containerised.</div>
-            <div class="terminal-output-line">Type <span style="color: var(--accent-cyan); font-weight: bold;">help</span> or click a command below to start.</div>
+        
+        <div class="pipeline-details" id="pipeline-details">
+          <h3>Code & Version Control</h3>
+          <p class="pipeline-desc">
+            Writing modular, clean Python and JavaScript using advanced AI workflows. I ensure proper structure and documentation from day one.
+          </p>
+          <div class="pipeline-tech-list">
+            <span class="project-tag">Git & GitHub</span>
+            <span class="project-tag">Cursor</span>
+            <span class="project-tag">Claude Code</span>
+            <span class="project-tag">Python (Pandas, SQL)</span>
           </div>
-          <div class="terminal-input-line">
-            <span class="terminal-prompt">kshitij_bangar$</span>
-            <input type="text" class="terminal-command-input" id="terminal-input" placeholder="Type a command..." autofocus autocomplete="off" spellcheck="false">
-          </div>
-        </div>
-        <div class="terminal-suggested-btns">
-          <button class="terminal-btn" onclick="executeTerminalCommand('about')">about</button>
-          <button class="terminal-btn" onclick="executeTerminalCommand('skills')">skills</button>
-          <button class="terminal-btn" onclick="executeTerminalCommand('projects')">projects</button>
-          <button class="terminal-btn" onclick="executeTerminalCommand('devops')">devops</button>
-          <button class="terminal-btn" onclick="executeTerminalCommand('clear')">clear</button>
         </div>
       </div>
     </div>
@@ -210,7 +224,7 @@
             <div class="chat-header-info">
               <div class="chat-status-dot"></div>
               <div class="chat-status-text">Resume RAG Bot</div>
-              <div class="chat-status-model">mistral-7b-instruct</div>
+              <div class="chat-status-model">gemini-1.5-flash</div>
             </div>
             <div style="font-size: 0.8rem; color: var(--text-muted);">Status: Online</div>
           </div>
@@ -311,12 +325,12 @@
     <div class="container">
       <div class="footer-content">
         <a href="#" class="logo">
-          <span class="bracket">&lt;</span><span class="name">Kshitij.B</span><span class="bracket">/&gt;</span>
+          <span class="name">KSHITIJ BANGAR</span>
         </a>
         <div class="footer-system-status">
           <span class="status-online">System: ACTIVE</span>
           <span class="status-platform">Host: VERCEL</span>
-          <span class="status-latency">Simulated RAG Latency: ~42ms</span>
+          <span class="status-latency">RAG API Latency: ~120ms</span>
         </div>
         <div class="footer-copyright">
           &copy; <span id="current-year"></span> Kshitij Bangar. Built with vanilla HTML/CSS/JS.
