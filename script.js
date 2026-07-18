@@ -707,8 +707,22 @@ function handleContactSubmit(event) {
   btn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin"></i> Encrypting & Sending...`;
   btn.style.pointerEvents = "none";
 
-  // Simulate secure network transaction
-  setTimeout(() => {
+  // Send email via FormSubmit AJAX endpoint
+  fetch("https://formsubmit.co/ajax/kshitijbangar18@gmail.com", {
+    method: "POST",
+    headers: { 
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    },
+    body: JSON.stringify({
+      name: name,
+      email: email,
+      message: message,
+      _subject: "New Portfolio Message from " + name
+    })
+  })
+  .then(response => response.json())
+  .then(data => {
     btn.innerHTML = `<i class="fa-solid fa-check"></i> Message Transmitted!`;
     btn.style.background = "linear-gradient(90deg, var(--accent-green), var(--accent-green))";
     btn.style.boxShadow = "0 0 15px rgba(16, 185, 129, 0.4)";
@@ -723,6 +737,18 @@ function handleContactSubmit(event) {
       btn.style.boxShadow = "";
       btn.style.pointerEvents = "auto";
     }, 3000);
-
-  }, 1500);
+  })
+  .catch(err => {
+    console.error("FormSubmit Error:", err);
+    btn.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> Transmission Failed`;
+    btn.style.background = "linear-gradient(90deg, #ef4444, #ef4444)";
+    btn.style.boxShadow = "0 0 15px rgba(239, 68, 68, 0.4)";
+    
+    setTimeout(() => {
+      btn.innerHTML = originalHTML;
+      btn.style.background = "";
+      btn.style.boxShadow = "";
+      btn.style.pointerEvents = "auto";
+    }, 3000);
+  });
 }
